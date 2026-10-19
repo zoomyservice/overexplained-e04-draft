@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E04 Voice Tests</title>
+<style>
+:root{--bg:#111316;--panel:#1b1e23;--line:#2a2f36;--text:#e8eaed;--dim:#9aa3ad;--acc:#f5b400}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0 0 4px}.sub{color:var(--dim);font-size:13px;margin-bottom:12px}
+.line{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:9px;padding:10px 12px;font-style:italic;margin-bottom:12px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:8px 11px;font:inherit;font-size:13px;cursor:pointer}
+button:hover{border-color:#4a525c}button.on{border-color:var(--acc);color:var(--acc)}
+.big{font-weight:600}
+.now{color:var(--dim);font-size:13px}.now b{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+.card.cur{border-color:var(--acc)}
+.h{display:flex;align-items:baseline;gap:9px}.n{color:var(--acc);font-weight:700}.nm{font-weight:700;font-size:16px}
+.tag{color:var(--dim);font-size:13px;margin:2px 0 8px;min-height:18px}
+.takes{display:flex;flex-wrap:wrap;gap:6px}
+.takes button{display:flex;flex-direction:column;align-items:flex-start;min-width:72px}
+.takes small{color:var(--dim);font-size:11px;font-variant-numeric:tabular-nums}
+.takes button.on small{color:var(--acc)}
+.note{color:#e0866a;font-size:12px;margin-top:6px}
+.bar{height:3px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--acc)}
+.foot{color:var(--dim);font-size:13px;margin-top:16px}
+</style></head><body><div class="wrap">
+<h1>E04 voice tests</h1>
+<div class="sub">ElevenLabs v4 &middot; 8 male voices &times; 4 takes of the same line &middot; all matched to the same loudness, so none sounds better just because it&rsquo;s louder</div>
+<div class="line">&ldquo;This is the guy who thinks oxygen masks are optional. Let&rsquo;s overexplain what just happened.&rdquo;</div>
+<div class="ctl">
+<button class="big" id="all">&#9654; Play take 1 of every voice</button>
+<button id="stop">&#9632; Stop</button>
+<span class="now" id="now"></span>
+</div>
+<div class="grid" id="grid"></div>
+<div class="foot">Tell me the voice and take you like, e.g. &ldquo;Mike take 2&rdquo;. The take you pick sets the tone for the whole voiceover.</div>
+</div>
+<audio id="a" preload="auto"></audio>
+<script>
+const V = [{"slug": "liam", "name": "Liam", "tag": "Energetic, social media creator", "takes": [{"f": "audio/01_liam_t1.mp3", "d": 5.52, "note": ""}, {"f": "audio/01_liam_t2.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t3.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.5}, {"slug": "mike", "name": "Mike", "tag": "Animation, explainers & gaming", "takes": [{"f": "audio/02_mike_t1.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t2.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/02_mike_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.3}, {"slug": "chrisanthony", "name": "Chris Anthony", "tag": "", "takes": [{"f": "audio/03_chrisanthony_t1.mp3", "d": 5.92, "note": ""}, {"f": "audio/03_chrisanthony_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t3.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t4.mp3", "d": 4.4, "note": ""}], "avg": 4.9}, {"slug": "adam", "name": "Adam", "tag": "Authentic & engaging conversationalist", "takes": [{"f": "audio/04_adam_t1.mp3", "d": 4.8, "note": ""}, {"f": "audio/04_adam_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/04_adam_t3.mp3", "d": 4.64, "note": ""}, {"f": "audio/04_adam_t4.mp3", "d": 4.64, "note": "may slur \u201coxygen\u201d"}], "avg": 4.7}, {"slug": "miles", "name": "Miles", "tag": "", "takes": [{"f": "audio/05_miles_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/05_miles_t2.mp3", "d": 5.76, "note": ""}, {"f": "audio/05_miles_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/05_miles_t4.mp3", "d": 5.44, "note": ""}], "avg": 5.5}, {"slug": "brad", "name": "Brad", "tag": "Clear documentary narrator", "takes": [{"f": "audio/06_brad_t1.mp3", "d": 4.96, "note": ""}, {"f": "audio/06_brad_t2.mp3", "d": 6.16, "note": ""}, {"f": "audio/06_brad_t3.mp3", "d": 6.0, "note": ""}, {"f": "audio/06_brad_t4.mp3", "d": 6.16, "note": ""}], "avg": 5.8}, {"slug": "chriso", "name": "Chris O.", "tag": "Natural, warm, believable", "takes": [{"f": "audio/07_chriso_t1.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t2.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t3.mp3", "d": 7.84, "note": ""}, {"f": "audio/07_chriso_t4.mp3", "d": 7.04, "note": ""}], "avg": 7.0}, {"slug": "jesse", "name": "Jesse", "tag": "Natural audiobook, American", "takes": [{"f": "audio/08_jesse_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t2.mp3", "d": 5.92, "note": ""}, {"f": "audio/08_jesse_t3.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t4.mp3", "d": 5.76, "note": ""}], "avg": 5.8}];
+const a = document.getElementById('a'), grid = document.getElementById('grid'), now = document.getElementById('now');
+let cur = null, queue = [];
+V.forEach((v, vi) => {
+  const c = document.createElement('div'); c.className = 'card'; c.id = 'c' + vi;
+  c.innerHTML = `<div class="h"><span class="n">${vi + 1}</span><span class="nm">${v.name}</span></div>
+    <div class="tag">${v.tag ? v.tag + ' &middot; ' : ''}reads it in ~${v.avg} s</div><div class="takes"></div>
+    ${v.takes.map((t, ti) => t.note ? `<div class="note">Take ${ti + 1}: ${t.note}</div>` : '').join('')}
+    <div class="bar"><i></i></div>`;
+  const tk = c.querySelector('.takes');
+  v.takes.forEach((t, ti) => {
+    const b = document.createElement('button'); b.id = `b${vi}_${ti}`;
+    b.innerHTML = `Take ${ti + 1}<small>${t.d.toFixed(1)} s</small>`;
+    b.onclick = () => { queue = []; play(vi, ti); };
+    tk.appendChild(b);
+  });
+  grid.appendChild(c);
+});
+function clearOn() { document.querySelectorAll('.on,.cur').forEach(e => e.classList.remove('on', 'cur')); document.querySelectorAll('.bar i').forEach(i => i.style.width = 0); }
+function play(vi, ti) {
+  clearOn(); cur = [vi, ti];
+  document.getElementById(`b${vi}_${ti}`).classList.add('on'); document.getElementById('c' + vi).classList.add('cur');
+  now.innerHTML = `Playing <b>${V[vi].name}</b>, take ${ti + 1}`;
+  a.src = V[vi].takes[ti].f; a.currentTime = 0; a.play();
+}
+a.ontimeupdate = () => { if (!cur || !a.duration) return; document.querySelector(`#c${cur[0]} .bar i`).style.width = (100 * a.currentTime / a.duration) + '%'; };
+a.onended = () => { if (queue.length) { const [vi, ti] = queue.shift(); setTimeout(() => play(vi, ti), 600); } else { now.textContent = ''; } };
+document.getElementById('all').onclick = () => { queue = V.map((_, vi) => [vi, 0]); const [vi, ti] = queue.shift(); play(vi, ti); };
+document.getElementById('stop').onclick = () => { queue = []; a.pause(); clearOn(); now.textContent = ''; cur = null; };
+</script></body></html>

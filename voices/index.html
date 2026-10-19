@@ -24,13 +24,18 @@ button:hover{border-color:#4a525c}button.on{border-color:var(--acc);color:var(--
 .takes button.on small{color:var(--acc)}
 .note{color:#e0866a;font-size:12px;margin-top:6px}
 .bar{height:3px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--acc)}
+h2.r{font-size:15px;margin:18px 0 8px;color:var(--acc)}
 .foot{color:var(--dim);font-size:13px;margin-top:16px}
 </style></head><body><div class="wrap">
 <h1>E04 voice tests</h1>
-<div class="sub">ElevenLabs v4 &middot; 8 male voices &times; 4 takes of the same line &middot; all matched to the same loudness, so none sounds better just because it&rsquo;s louder</div>
+<div class="sub">ElevenLabs v4 &middot; 4 takes per version &middot; all matched to the same loudness, so none sounds better just because it&rsquo;s louder</div>
+<h2 class="r">Round 2 &middot; Jesse, fixing the O</h2>
+<div class="line">&ldquo;Up here, oxygen isn&rsquo;t optional. You&rsquo;d pass out in under a minute&hellip; and feel amazing doing it.&rdquo;</div>
+<div class="grid" id="grid2"></div>
+<h2 class="r">Round 1 &middot; 8 voices</h2>
 <div class="line">&ldquo;This is the guy who thinks oxygen masks are optional. Let&rsquo;s overexplain what just happened.&rdquo;</div>
 <div class="ctl">
-<button class="big" id="all">&#9654; Play take 1 of every voice</button>
+<button class="big" id="all">&#9654; Play take 1 of every round-1 voice</button>
 <button id="stop">&#9632; Stop</button>
 <span class="now" id="now"></span>
 </div>
@@ -39,13 +44,16 @@ button:hover{border-color:#4a525c}button.on{border-color:var(--acc);color:var(--
 </div>
 <audio id="a" preload="auto"></audio>
 <script>
-const V = [{"slug": "liam", "name": "Liam", "tag": "Energetic, social media creator", "takes": [{"f": "audio/01_liam_t1.mp3", "d": 5.52, "note": ""}, {"f": "audio/01_liam_t2.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t3.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.5}, {"slug": "mike", "name": "Mike", "tag": "Animation, explainers & gaming", "takes": [{"f": "audio/02_mike_t1.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t2.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/02_mike_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.3}, {"slug": "chrisanthony", "name": "Chris Anthony", "tag": "", "takes": [{"f": "audio/03_chrisanthony_t1.mp3", "d": 5.92, "note": ""}, {"f": "audio/03_chrisanthony_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t3.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t4.mp3", "d": 4.4, "note": ""}], "avg": 4.9}, {"slug": "adam", "name": "Adam", "tag": "Authentic & engaging conversationalist", "takes": [{"f": "audio/04_adam_t1.mp3", "d": 4.8, "note": ""}, {"f": "audio/04_adam_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/04_adam_t3.mp3", "d": 4.64, "note": ""}, {"f": "audio/04_adam_t4.mp3", "d": 4.64, "note": "may slur \u201coxygen\u201d"}], "avg": 4.7}, {"slug": "miles", "name": "Miles", "tag": "", "takes": [{"f": "audio/05_miles_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/05_miles_t2.mp3", "d": 5.76, "note": ""}, {"f": "audio/05_miles_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/05_miles_t4.mp3", "d": 5.44, "note": ""}], "avg": 5.5}, {"slug": "brad", "name": "Brad", "tag": "Clear documentary narrator", "takes": [{"f": "audio/06_brad_t1.mp3", "d": 4.96, "note": ""}, {"f": "audio/06_brad_t2.mp3", "d": 6.16, "note": ""}, {"f": "audio/06_brad_t3.mp3", "d": 6.0, "note": ""}, {"f": "audio/06_brad_t4.mp3", "d": 6.16, "note": ""}], "avg": 5.8}, {"slug": "chriso", "name": "Chris O.", "tag": "Natural, warm, believable", "takes": [{"f": "audio/07_chriso_t1.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t2.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t3.mp3", "d": 7.84, "note": ""}, {"f": "audio/07_chriso_t4.mp3", "d": 7.04, "note": ""}], "avg": 7.0}, {"slug": "jesse", "name": "Jesse", "tag": "Natural audiobook, American", "takes": [{"f": "audio/08_jesse_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t2.mp3", "d": 5.92, "note": ""}, {"f": "audio/08_jesse_t3.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t4.mp3", "d": 5.76, "note": ""}], "avg": 5.8}];
-const a = document.getElementById('a'), grid = document.getElementById('grid'), now = document.getElementById('now');
+const V2 = [{"name": "Jesse \u00b7 A", "tag": "plain spelling, a little amused on the last part", "takes": [{"f": "audio/t2_jesse_A1.mp3", "d": 7.04, "note": ""}, {"f": "audio/t2_jesse_A2.mp3", "d": 7.04, "note": ""}, {"f": "audio/t2_jesse_A3.mp3", "d": 7.12, "note": ""}, {"f": "audio/t2_jesse_A4.mp3", "d": 7.12, "note": ""}], "slug": "t2", "avg": 7.1}, {"name": "Jesse \u00b7 B", "tag": "\u201coxygen\u201d and \u201coptional\u201d sent as pronunciation spelling (AHK-sih-jen, AHP-shuh-nul) so it can\u2019t stretch the O; same amused ending", "takes": [{"f": "audio/t2_jesse_B1.mp3", "d": 7.04, "note": ""}, {"f": "audio/t2_jesse_B2.mp3", "d": 7.12, "note": ""}, {"f": "audio/t2_jesse_B3.mp3", "d": 7.2, "note": ""}, {"f": "audio/t2_jesse_B4.mp3", "d": 7.2, "note": ""}], "slug": "t2", "avg": 7.1}];
+const V1 = [{"slug": "liam", "name": "Liam", "tag": "Energetic, social media creator", "takes": [{"f": "audio/01_liam_t1.mp3", "d": 5.52, "note": ""}, {"f": "audio/01_liam_t2.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t3.mp3", "d": 5.44, "note": ""}, {"f": "audio/01_liam_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.5}, {"slug": "mike", "name": "Mike", "tag": "Animation, explainers & gaming", "takes": [{"f": "audio/02_mike_t1.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t2.mp3", "d": 5.28, "note": ""}, {"f": "audio/02_mike_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/02_mike_t4.mp3", "d": 5.6, "note": ""}], "avg": 5.3}, {"slug": "chrisanthony", "name": "Chris Anthony", "tag": "", "takes": [{"f": "audio/03_chrisanthony_t1.mp3", "d": 5.92, "note": ""}, {"f": "audio/03_chrisanthony_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t3.mp3", "d": 4.56, "note": ""}, {"f": "audio/03_chrisanthony_t4.mp3", "d": 4.4, "note": ""}], "avg": 4.9}, {"slug": "adam", "name": "Adam", "tag": "Authentic & engaging conversationalist", "takes": [{"f": "audio/04_adam_t1.mp3", "d": 4.8, "note": ""}, {"f": "audio/04_adam_t2.mp3", "d": 4.56, "note": ""}, {"f": "audio/04_adam_t3.mp3", "d": 4.64, "note": ""}, {"f": "audio/04_adam_t4.mp3", "d": 4.64, "note": "may slur \u201coxygen\u201d"}], "avg": 4.7}, {"slug": "miles", "name": "Miles", "tag": "", "takes": [{"f": "audio/05_miles_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/05_miles_t2.mp3", "d": 5.76, "note": ""}, {"f": "audio/05_miles_t3.mp3", "d": 5.12, "note": ""}, {"f": "audio/05_miles_t4.mp3", "d": 5.44, "note": ""}], "avg": 5.5}, {"slug": "brad", "name": "Brad", "tag": "Clear documentary narrator", "takes": [{"f": "audio/06_brad_t1.mp3", "d": 4.96, "note": ""}, {"f": "audio/06_brad_t2.mp3", "d": 6.16, "note": ""}, {"f": "audio/06_brad_t3.mp3", "d": 6.0, "note": ""}, {"f": "audio/06_brad_t4.mp3", "d": 6.16, "note": ""}], "avg": 5.8}, {"slug": "chriso", "name": "Chris O.", "tag": "Natural, warm, believable", "takes": [{"f": "audio/07_chriso_t1.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t2.mp3", "d": 6.48, "note": ""}, {"f": "audio/07_chriso_t3.mp3", "d": 7.84, "note": ""}, {"f": "audio/07_chriso_t4.mp3", "d": 7.04, "note": ""}], "avg": 7.0}, {"slug": "jesse", "name": "Jesse", "tag": "Natural audiobook, American", "takes": [{"f": "audio/08_jesse_t1.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t2.mp3", "d": 5.92, "note": ""}, {"f": "audio/08_jesse_t3.mp3", "d": 5.84, "note": ""}, {"f": "audio/08_jesse_t4.mp3", "d": 5.76, "note": ""}], "avg": 5.8}];
+const V = V1.concat(V2);
+const a = document.getElementById('a'), now = document.getElementById('now');
 let cur = null, queue = [];
 V.forEach((v, vi) => {
+  const grid = document.getElementById(vi < V1.length ? 'grid' : 'grid2');
   const c = document.createElement('div'); c.className = 'card'; c.id = 'c' + vi;
-  c.innerHTML = `<div class="h"><span class="n">${vi + 1}</span><span class="nm">${v.name}</span></div>
-    <div class="tag">${v.tag ? v.tag + ' &middot; ' : ''}reads it in ~${v.avg} s</div><div class="takes"></div>
+  c.innerHTML = `<div class="h"><span class="n">${vi < V1.length ? vi + 1 : '★'}</span><span class="nm">${v.name}</span></div>
+    <div class="tag">${v.tag ? v.tag + ' &middot; ' : ''}~${v.avg} s</div><div class="takes"></div>
     ${v.takes.map((t, ti) => t.note ? `<div class="note">Take ${ti + 1}: ${t.note}</div>` : '').join('')}
     <div class="bar"><i></i></div>`;
   const tk = c.querySelector('.takes');
@@ -66,6 +74,6 @@ function play(vi, ti) {
 }
 a.ontimeupdate = () => { if (!cur || !a.duration) return; document.querySelector(`#c${cur[0]} .bar i`).style.width = (100 * a.currentTime / a.duration) + '%'; };
 a.onended = () => { if (queue.length) { const [vi, ti] = queue.shift(); setTimeout(() => play(vi, ti), 600); } else { now.textContent = ''; } };
-document.getElementById('all').onclick = () => { queue = V.map((_, vi) => [vi, 0]); const [vi, ti] = queue.shift(); play(vi, ti); };
+document.getElementById('all').onclick = () => { queue = V1.map((_, vi) => [vi, 0]); const [vi, ti] = queue.shift(); play(vi, ti); };
 document.getElementById('stop').onclick = () => { queue = []; a.pause(); clearOn(); now.textContent = ''; cur = null; };
 </script></body></html>

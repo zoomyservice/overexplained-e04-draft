@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>E04 Oxygen Masks: v3 draft</title>
+<title>E04 Oxygen Masks v4</title>
 <style>
 :root{--bg:#111316;--panel:#1b1e23;--line:#2a2f36;--text:#e8eaed;--dim:#9aa3ad;--acc:#f5b400}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -20,55 +20,35 @@ button.on{border-color:var(--acc);color:var(--acc)}
 .shot .l{font-style:italic;margin-top:3px}.shot .s{color:var(--dim);font-size:13px;margin-top:2px}
 details{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:12px}
 summary{cursor:pointer;font-weight:600}ul{margin:8px 0 0;padding-left:18px}li{margin:3px 0;color:var(--dim)}
+a{color:var(--acc)}
 </style></head><body>
 <div class="wrap">
 <div>
-<h1>E04 Oxygen Masks: v3 Workbench draft</h1>
-<div class="sub">Draft engine (Workbench, with EEVEE for the spark shot). Voice: draft Kokoro track. White labels are draft notes.</div>
-<video id="v" src="E04_draft_v4.mp4" controls playsinline preload="auto"></video>
+<h1>E04 Oxygen Masks: v4 Workbench draft</h1>
+<div class="sub">The remake from your dancer hook, 43.6 s. Draft engine: Workbench. Draft voice: the free Kokoro male voice at Jesse's pace (no ElevenLabs in the video yet). No text on screen.</div>
+<video id="v" src="E04_v4_draft1.mp4" controls playsinline preload="auto"></video>
 <div class="ctl">
 <button id="back">&#9664; 1 frame</button><button id="fwd">1 frame &#9654;</button>
 <button data-r="0.25">0.25×</button><button data-r="0.5">0.5×</button><button data-r="1" class="on">1×</button>
 </div>
 <div class="now" id="now"></div>
-<details open><summary>Fixed in this version (your notes)</summary><ul>
-<li>No text on screen: the labels are gone until you ask for captions</li>
-<li>First clip: the mask cord no longer runs through her face. It now runs inside the box and drops from its front edge</li>
-<li>Pin shot: pulled back so the whole oxygen can is in frame with the pin and the cord down to her hand; the spring shot after it is wider too</li>
-<li>Same problem found in other shots: the middle and aisle passengers' tubes ran across the window passengers' faces in 9 shots. Every tube now drops from right above its own mask</li>
-<li>Background passengers' tubes no longer stretch across the aisle</li>
-<li>New: a passenger dancing in the aisle, nightclub style, deep in the beat (the long aisle shot at 0:51)</li>
+<details open><summary>New in v4</summary><ul>
+<li>Your hook: straight down the aisle at his height, everyone masked, a slow push-in while he dances. He freezes on "optional", his eyes roll, he drools, then tips over backward stiff as a plank, fist still up</li>
+<li>The lighter script you approved, 110 words, a new picture about every 2 s</li>
+<li>Ending: Gran in seat 15C bends over the armrest and puts the spare mask on him; he springs back up and dances</li>
+<li>The new dance (smooth, whole body, a different move every bar), starting 2 s in as you suggested; it stays a small part of the video</li>
+<li>The explanation reuses the v3 cabin, can, cockpit and plane shots, cut to the new lines</li>
 </ul></details>
-<details><summary>Earlier fixes</summary><ul>
-<li>Real people in different seats instead of floating hands; skin, eyes and clothes now show in the draft</li>
-<li>Cockpit: the interior was shifted 1.4 m sideways; now the pilots sit in their seats with a hand on the stick</li>
-<li>The dive: the plane now visibly noses down while the clouds come up</li>
-<li>Sparks: a real spray from the firing cap instead of a blob</li>
-<li>Tanks shot: one tank per passenger fills the aisle (they were hidden behind seats)</li>
-<li>Blocked or repeated framing fixed in A03, A06a, A07a, A07b, A10b, A11, A16, A17</li>
-<li>The drowsy passenger's eyes now close</li>
-<li>Timing bugs: the hanging masks no longer drift, the door stays open, and the reaction moves in every can shot</li>
-<li>People realism: real strand hair on the hero and strand eyebrows on everyone, a cloth-simulated T-shirt that folds when she sits and reaches. Skin, eyes, fabric and window sunlight only show in the final render (stills below)</li>
+<details><summary>Other pages</summary><ul>
+<li><a href="voices/">Voice tests</a> (Jesse picked; round 2 B take 3 is the reference)</li>
+<li><a href="dance/">Dance tests</a></li>
+<li><a href="v3.html">The old v3 draft</a></li>
 </ul></details>
-<details open><summary>People realism: final-render stills (before / after)</summary>
-<div id="ba" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"></div>
-</details>
 </div>
 <div class="shots" id="list"></div>
 </div>
 <script>
-const BA = [["A15_1129","Mask on (A15)"],["A13_1050","Smell of burning (A13)"],["A01_60","Opening (A01)"]];
-document.addEventListener('DOMContentLoaded', () => {
-  const ba = document.getElementById('ba');
-  BA.forEach(([k, t]) => {
-    ['before','after2'].forEach(w => {
-      const f = document.createElement('figure'); f.style.margin = '0';
-      f.innerHTML = `<img src="stills/${w}_${k}.png" style="width:100%;border-radius:6px;display:block" onerror="this.parentNode.style.display='none'"><figcaption style="font-size:12px;color:var(--dim)">${w==='before'?'Before':'After'} · ${t}</figcaption>`;
-      ba.appendChild(f);
-    });
-  });
-});
-const ROWS = [{"shot": "A01", "t0": 0.0, "t1": 3.45, "line": "This is the oxygen mask above your airplane seat.", "see": "Hero by the window in row 10; the mask has just dropped in front of her"}, {"shot": "A02", "t0": 3.45, "t1": 6.92, "line": "On most planes, its oxygen doesn't come from a tank.", "see": "A plain oxygen tank: what people assume is up there"}, {"shot": "A03", "t0": 6.92, "t1": 10.26, "line": "It comes from a chemical fire, right above your head.", "see": "Ceiling cut open: the oxygen generator sits right above her head"}, {"shot": "A04a", "t0": 10.26, "t1": 12.24, "line": "At cruising height, the air is so thin you'd have less than a minute before you stop thinking clearly.", "see": "The plane at cruising height above the clouds"}, {"shot": "A04b", "t0": 12.24, "t1": 16.01, "line": "At cruising height, the air is so thin you'd have less than a minute before you stop thinking clearly.", "see": "A passenger getting drowsy: eyelids closing, head nodding"}, {"shot": "A05", "t0": 16.01, "t1": 18.78, "line": "Carrying tanks for everyone would be too heavy.", "see": "One tank per passenger would fill the aisle"}, {"shot": "A06a", "t0": 18.78, "t1": 21.29, "line": "So above each row sits a small metal can of a chemical called sodium chlorate.", "see": "Ceiling cut open along the right side: a can above every row"}, {"shot": "A06b", "t0": 21.29, "t1": 24.31, "line": "So above each row sits a small metal can of a chemical called sodium chlorate.", "see": "The can cut in half: firing pin, spring, chemical core"}, {"shot": "A07a", "t0": 24.31, "t1": 25.8, "line": "When you pull the mask toward you, it yanks out a pin.", "see": "Over her shoulder: she grabs the mask and pulls it down"}, {"shot": "A07b", "t0": 25.8, "t1": 27.5, "line": "When you pull the mask toward you, it yanks out a pin.", "see": "The lanyard yanks the pin out of the can"}, {"shot": "A08", "t0": 27.5, "t1": 29.91, "line": "A spring snaps a tiny firing cap.", "see": "Slow motion: the spring snaps the striker onto the firing cap, sparks"}, {"shot": "A09", "t0": 29.91, "t1": 31.89, "line": "And that starts the reaction.", "see": "The top of the core starts reacting"}, {"shot": "A10a", "t0": 31.89, "t1": 33.82, "line": "The sodium chlorate breaks apart into plain salt and pure oxygen.", "see": "The reaction front moves down the core"}, {"shot": "A10b", "t0": 33.82, "t1": 36.5, "line": "The sodium chlorate breaks apart into plain salt and pure oxygen.", "see": "Mask on, the tube runs up to the can in the ceiling"}, {"shot": "A11", "t0": 36.5, "t1": 39.2, "line": "Iron powder mixed in keeps it burning.", "see": "Close-up of the core: burnt zone, hot band, fresh chemical with iron grains"}, {"shot": "A12", "t0": 39.2, "t1": 42.23, "line": "It burns at around five hundred degrees Fahrenheit.", "see": "Low angle on the can while it burns"}, {"shot": "A13", "t0": 42.23, "t1": 45.08, "line": "That's why you might smell burning. It's normal.", "see": "A passenger in a suit sniffs the burning smell"}, {"shot": "A15", "t0": 45.08, "t1": 49.0, "line": "And if the bag doesn't puff up, the oxygen is still flowing.", "see": "Her bag is not puffed up, but oxygen still flows"}, {"shot": "A16", "t0": 49.0, "t1": 51.51, "line": "Once it starts, nothing can stop it.", "see": "High angle: the reaction keeps moving down, nothing stops it"}, {"shot": "A17", "t0": 51.51, "t1": 54.11, "line": "It makes oxygen for about fifteen minutes.", "see": "Down the aisle: everyone breathing through masks"}, {"shot": "A18a", "t0": 54.11, "t1": 55.73, "line": "That's enough time for the pilots to dive down to air you can breathe.", "see": "The captain, in mask and goggles, pushes the stick forward"}, {"shot": "A18b", "t0": 55.73, "t1": 58.48, "line": "That's enough time for the pilots to dive down to air you can breathe.", "see": "The plane noses down toward the clouds"}, {"shot": "A19", "t0": 58.48, "t1": 61.64, "line": "So if those masks ever drop, pull one toward you.", "see": "Second time: the masks drop, she reaches for one"}, {"shot": "A20", "t0": 61.64, "t1": 65.74, "line": "That tug lights the fire that keeps you breathing.", "see": "Inside the ceiling the can fires again, then back to her breathing"}];
+const ROWS = [{"shot": "V01", "t0": 0.0, "t1": 5.38, "line": "This is the guy who thinks oxygen masks are optional.", "see": "Straight down the aisle, everyone masked; he dances, the camera slowly pushes in. He freezes, his eyes roll, he drools, then tips over backward stiff as a plank, fist still up"}, {"shot": "V02", "t0": 5.38, "t1": 8.06, "line": "Let's overexplain what just happened.", "see": "From above: flat on the aisle floor, fist pointing at the ceiling; the camera cranes up to the masked passengers in row 15"}, {"shot": "V03", "t0": 8.06, "t1": 9.51, "line": "Up here, the air's so thin", "see": "The plane at cruising height above the clouds"}, {"shot": "V04", "t0": 9.51, "t1": 11.14, "line": "you'd pass out in under a minute,", "see": "A passenger getting drowsy"}, {"shot": "V05", "t0": 11.14, "t1": 12.8, "line": "and it can feel amazing", "see": "Slow motion: his blissed-out face, hands in the air"}, {"shot": "V06", "t0": 12.8, "t1": 14.89, "line": "right before you do.", "see": "Down along his body: mouth open, eyes shut, fist still up at the ceiling"}, {"shot": "V07", "t0": 14.89, "t1": 16.83, "line": "That's what these masks are for.", "see": "Her mask has dropped in front of her"}, {"shot": "V08", "t0": 16.83, "t1": 18.38, "line": "But they don't use tanks.", "see": "If every passenger had a tank: the aisle would be full of them"}, {"shot": "V09", "t0": 18.38, "t1": 20.53, "line": "They make oxygen with a tiny fire,", "see": "The whole oxygen can on a plinth, burning inside"}, {"shot": "V10", "t0": 20.53, "t1": 22.46, "line": "right above your head.", "see": "Ceiling cut open: the can sits right above her head"}, {"shot": "V11", "t0": 22.46, "t1": 23.69, "line": "Pull one, and the cord", "see": "Over her shoulder: she pulls the mask down"}, {"shot": "V12", "t0": 23.69, "t1": 24.81, "line": "yanks out a pin.", "see": "The cord yanks the pin out of the can"}, {"shot": "V13", "t0": 24.81, "t1": 26.16, "line": "A spring fires a cap,", "see": "Slow motion: the spring snaps onto the firing cap, sparks"}, {"shot": "V14", "t0": 26.16, "t1": 27.86, "line": "and a chemical starts burning", "see": "The chemical core starts burning at the top"}, {"shot": "V15", "t0": 27.86, "t1": 29.34, "line": "into pure oxygen,", "see": "Mask on: the tube runs up to the can in the ceiling"}, {"shot": "V16", "t0": 29.34, "t1": 31.54, "line": "straight into your mask.", "see": "Close on her mask and bag"}, {"shot": "V17", "t0": 31.54, "t1": 33.21, "line": "It lasts about fifteen minutes,", "see": "The burn keeps moving down the core"}, {"shot": "V18", "t0": 33.21, "t1": 35.35, "line": "enough for the pilots to dive down", "see": "The captain, masked, pushes the nose down"}, {"shot": "V19", "t0": 35.35, "t1": 36.6, "line": "to breathable air,", "see": "The plane dives toward thicker air"}, {"shot": "V20", "t0": 36.6, "t1": 40.93, "line": "and for someone to finally get this guy a mask.", "see": "Gran in 15C bends over the armrest and puts the spare mask on him"}, {"shot": "V21", "t0": 40.93, "t1": 43.65, "line": "", "see": "Mask on, he springs straight back up and dances; the camera pulls back"}];
 const v = document.getElementById('v'), list = document.getElementById('list'), now = document.getElementById('now');
 const fmt = t => { const m = Math.floor(t/60), s = (t%60).toFixed(1).padStart(4,'0'); return m+':'+s; };
 ROWS.forEach((r,i) => {

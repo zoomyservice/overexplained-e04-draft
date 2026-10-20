@@ -24,15 +24,20 @@ a{color:var(--acc)}
 </style></head><body>
 <div class="wrap">
 <div>
-<h1>E04 Oxygen Masks: v4 Workbench draft 2</h1>
-<div class="sub">The remake from your dancer hook, 43.6 s. Draft engine: Workbench. Draft voice: the free Kokoro male voice at Jesse's pace (no ElevenLabs in the video yet). No text on screen.</div>
-<video id="v" src="E04_v4_draft2.mp4" controls playsinline preload="auto"></video>
+<h1>E04 Oxygen Masks: v4 final render</h1>
+<div class="sub">The remake from your dancer hook, 43.6 s, final quality: Cycles, 1080×1920, all 21 shots (1048 frames). Voice: still the free Kokoro draft voice at Jesse's pace (no ElevenLabs). No text on screen.</div>
+<video id="v" src="E04_v4_final.mp4" controls playsinline preload="auto"></video>
 <div class="ctl">
 <button id="back">&#9664; 1 frame</button><button id="fwd">1 frame &#9654;</button>
 <button data-r="0.25">0.25×</button><button data-r="0.5">0.5×</button><button data-r="1" class="on">1×</button>
 </div>
 <div class="now" id="now"></div>
-<details open><summary>Fixed in draft 2</summary><ul>
+<details open><summary>Final render</summary><ul>
+<li>Every shot rendered in Cycles at full size (it took about 5.5 hours on the Mac mini)</li>
+<li>Flash check passed: no frame-to-frame brightness jumps in any shot</li>
+<li>Same cut, timing and voice as draft 2</li>
+</ul></details>
+<details><summary>Fixed in draft 2</summary><ul>
 <li>Nothing of his goes through the floor or a seat any more: every frame he is on screen was checked by geometry against the seats, the floor and the passengers next to the aisle</li>
 <li>The fall: his back now lands on the floor instead of sinking into it, and his left arm stays tucked at his side on the way down, then flops out along his side (no arm through the floor)</li>
 <li>He lies dead centre in the aisle (his shoulder was in the row 15 seat across the aisle)</li>
@@ -52,6 +57,7 @@ a{color:var(--acc)}
 <details><summary>Other pages</summary><ul>
 <li><a href="voices/">Voice tests</a> (Jesse picked; round 2 B take 3 is the reference)</li>
 <li><a href="dance/">Dance tests</a></li>
+<li><a href="E04_v4_draft2.mp4">v4 draft 2</a> (Workbench)</li>
 <li><a href="E04_v4_draft1.mp4">v4 draft 1</a> (before the collision fixes)</li>
 <li><a href="v3.html">The old v3 draft</a></li>
 </ul></details>
